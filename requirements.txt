@@ -1,0 +1,12 @@
+Django>=4.2,<5.0
+djangorestframework
+drf-spectacular
+django-environ
+gunicorn
+psycopg2-binary
+django-filter
+redis
+django-redis
+celery
+requests
+python-telegram-bot
