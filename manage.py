@@ -2,7 +2,10 @@
 """Django's command-line utility for administrative tasks."""
 import os
 import sys
+import redis
 
+redis_host = "localhost"
+redis_port = 6379
 
 def main():
     """Run administrative tasks."""

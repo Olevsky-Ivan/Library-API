@@ -3,9 +3,11 @@ from decimal import Decimal
 from django.conf import settings
 
 class Book(models.Model):
+
     class CoverType(models.TextChoices):
         HARD = "HARD", "Hardcover"
         SOFT = "SOFT", "Softcover"
+
 
     title = models.CharField(max_length=100)
     author = models.CharField(max_length=100)
