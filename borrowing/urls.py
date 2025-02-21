@@ -9,7 +9,7 @@ router.register(r'payments', PaymentViewSet, basename='payment')
 router.register(r'borrowings', BorrowingViewSet, basename='borrowing')
 
 urlpatterns = [
-    path('api/', include(router.urls)),
+    path("", include(router.urls)),
 ]
 
 
