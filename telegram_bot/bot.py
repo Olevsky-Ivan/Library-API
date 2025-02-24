@@ -12,9 +12,15 @@ logging.basicConfig(level=logging.INFO)
 
 
 lybrary_books = [
-        {"id": 1, "title": "The Great Gatsby", "author": "F. Scott Fitzgerald", "inventory": 3},
-        {"id": 2, "title": "To Kill a Mockingbird", "author": "Harper Lee", "inventory": 0},
-    ]
+    {
+        "id": 1,
+        "title": "The Great Gatsby",
+        "author": "F. Scott Fitzgerald",
+        "inventory": 3,
+    },
+    {"id": 2, "title": "To Kill a Mockingbird", "author": "Harper Lee", "inventory": 0},
+]
+
 
 async def search_books_by_title(title: str) -> list[dict]:
     for book in lybrary_books:
@@ -26,7 +32,9 @@ async def search_books_by_title(title: str) -> list[dict]:
 
 @dp.message(Command(commands=["start"]))
 async def start_handler(message: Message):
-    await message.reply("Hello! This is a library bot. Type /help to see available commands.")
+    await message.reply(
+        "Hello! This is a library bot. Type /help to see available commands."
+    )
 
 
 @dp.message(Command(commands=["help"]))
@@ -43,7 +51,9 @@ async def search_handler(message: Message):
     args = message.text.split(maxsplit=1)
 
     if len(args) < 2:
-        await message.reply("Please specify a book title. Example: /search The Great Gatsby")
+        await message.reply(
+            "Please specify a book title. Example: /search The Great Gatsby"
+        )
         return
 
     title = args[1]
@@ -61,7 +71,6 @@ async def search_handler(message: Message):
             status = "Available" if book["inventory"] > 0 else "Unavailable"
             reply += f"ID: {book['id']}, Title: {book['title']}, Author: {book['author']}, Status: {status}\n"
         await message.reply(reply)
-
 
 
 @dp.message(Command(commands=["borrow"]))

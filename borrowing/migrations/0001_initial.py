@@ -9,41 +9,103 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Book',
+            name="Book",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('title', models.CharField(max_length=100)),
-                ('author', models.CharField(max_length=100)),
-                ('cover', models.CharField(choices=[('HARD', 'Hardcover'), ('SOFT', 'Softcover')], max_length=4)),
-                ('inventory', models.PositiveIntegerField()),
-                ('daily_fee', models.DecimalField(decimal_places=2, default=Decimal('0.00'), max_digits=5)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("title", models.CharField(max_length=100)),
+                ("author", models.CharField(max_length=100)),
+                (
+                    "cover",
+                    models.CharField(
+                        choices=[("HARD", "Hardcover"), ("SOFT", "Softcover")],
+                        max_length=4,
+                    ),
+                ),
+                ("inventory", models.PositiveIntegerField()),
+                (
+                    "daily_fee",
+                    models.DecimalField(
+                        decimal_places=2, default=Decimal("0.00"), max_digits=5
+                    ),
+                ),
             ],
         ),
         migrations.CreateModel(
-            name='Borrowing',
+            name="Borrowing",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('borrow_date', models.DateField()),
-                ('expected_return_date', models.DateField()),
-                ('actual_return_date', models.DateField(blank=True, null=True)),
-                ('book', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='borrowing.book')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("borrow_date", models.DateField()),
+                ("expected_return_date", models.DateField()),
+                ("actual_return_date", models.DateField(blank=True, null=True)),
+                (
+                    "book",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE, to="borrowing.book"
+                    ),
+                ),
             ],
         ),
         migrations.CreateModel(
-            name='Payment',
+            name="Payment",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('status', models.CharField(choices=[('PD', 'Pending'), ('PA', 'Paid')], default='PD', max_length=4)),
-                ('type', models.CharField(choices=[('PAY', 'Payment'), ('FINE', 'Fine')], max_length=4)),
-                ('session_url', models.URLField()),
-                ('session_id', models.CharField(max_length=255, unique=True)),
-                ('money_to_pay', models.DecimalField(decimal_places=2, default=Decimal('0.00'), max_digits=10)),
-                ('borrowing', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='borrowing.borrowing')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "status",
+                    models.CharField(
+                        choices=[("PD", "Pending"), ("PA", "Paid")],
+                        default="PD",
+                        max_length=4,
+                    ),
+                ),
+                (
+                    "type",
+                    models.CharField(
+                        choices=[("PAY", "Payment"), ("FINE", "Fine")], max_length=4
+                    ),
+                ),
+                ("session_url", models.URLField()),
+                ("session_id", models.CharField(max_length=255, unique=True)),
+                (
+                    "money_to_pay",
+                    models.DecimalField(
+                        decimal_places=2, default=Decimal("0.00"), max_digits=10
+                    ),
+                ),
+                (
+                    "borrowing",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="borrowing.borrowing",
+                    ),
+                ),
             ],
         ),
     ]

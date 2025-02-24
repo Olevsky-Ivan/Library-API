@@ -9,10 +9,10 @@ from drf_spectacular.views import (
 )
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
-    path('api/get-token/', get_token, name='get_token'),
-    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    path("admin/", admin.site.urls),
+    path("api/token/", TokenObtainPairView.as_view(), name="token_obtain_pair"),
+    path("api/get-token/", get_token, name="get_token"),
+    path("api/token/refresh/", TokenRefreshView.as_view(), name="token_refresh"),
     path("api/users/", include("user.urls")),
     path("api/borrowings/", include("borrowing.urls")),
     path("api/schema/", SpectacularAPIView.as_view(), name="schema"),

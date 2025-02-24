@@ -1,6 +1,7 @@
 from django.core.cache import cache
 from django.conf import settings
 
+
 def delete_cache(key_prefix: str):
     """
     Delete all cache keys with the given prefix.
